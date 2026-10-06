@@ -3,13 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/base}">
 <head>
-    <title>Painel</title>
+    <title>Acesso negado</title>
 </head>
 <body>
     <div layout:fragment="conteudo">
-        <h2>Painel</h2>
-        <p>Bem-vindo, <span th:text="${usuarioNome}">Usuário</span>.</p>
-        <p>Perfil: <span th:text="${usuarioPerfil}">PERFIL</span></p>
+        <h2>Acesso negado</h2>
+        <p>Você não tem permissão para acessar esta página.</p>
+        <a th:href="@{/}">Voltar ao início</a>
     </div>
 </body>
 </html>

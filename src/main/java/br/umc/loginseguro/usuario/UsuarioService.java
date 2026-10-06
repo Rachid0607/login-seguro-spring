@@ -1,8 +1,10 @@
 package br.umc.loginseguro.usuario;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 /**
@@ -37,6 +39,11 @@ public class UsuarioService {
 
 	public static String normalizarEmail(String email) {
 		return email == null ? null : email.trim().toLowerCase();
+	}
+
+	@PreAuthorize("hasAnyRole('SECRETARIA', 'ADMINISTRADOR')")
+	public List<Usuario> listarPorPerfil(Perfil perfil) {
+		return usuarioRepository.findByPerfil(perfil);
 	}
 
 }
