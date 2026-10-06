@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="mensagens">
+        <p class="mensagem mensagem-sucesso" th:if="${mensagemSucesso}" th:text="${mensagemSucesso}">Sucesso.</p>
+        <p class="mensagem mensagem-erro" th:if="${mensagemErro}" th:text="${mensagemErro}">Erro.</p>
+    </div>
+</body>
+</html>

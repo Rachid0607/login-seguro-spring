@@ -1,0 +1,12 @@
+:root {
+    --cor-fundo: #f5f7fa;
+    --cor-texto: #1f2933;
+    --cor-primaria: #2563eb;
+    --cor-cabecalho-fundo: #ffffff;
+    --cor-rodape-fundo: #e5e7eb;
+    --cor-borda: #d1d5db;
+    --cor-sucesso-fundo: #dcfce7;
+    --cor-sucesso-texto: #166534;
+    --cor-erro-fundo: #fee2e2;
+    --cor-erro-texto: #991b1b;
+}
