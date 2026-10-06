@@ -108,6 +108,10 @@ button {
     background: var(--cor-fundo-pagina);
 }
 
+.form-inline {
+    display: inline-block;
+}
+
 .btn-sair {
     border: 1px solid var(--cor-topbar-texto-secundario);
     background: transparent;

@@ -10,7 +10,7 @@
                 <span sec:authentication="principal.perfil">PERFIL</span>
             </div>
             <div th:replace="~{fragments/alternador-tema :: alternadorTema}"></div>
-            <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" style="display:inline">
+            <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" class="form-inline">
                 <button type="submit" class="btn-sair">Sair</button>
             </form>
         </div>
