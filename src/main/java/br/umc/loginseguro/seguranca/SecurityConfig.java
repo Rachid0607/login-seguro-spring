@@ -2,6 +2,7 @@ package br.umc.loginseguro.seguranca;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +12,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
 	private static final int CUSTO_BCRYPT = 12;
@@ -26,6 +28,9 @@ public class SecurityConfig {
 		http
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/", "/login", "/cadastro", "/error", "/css/**", "/temas/**").permitAll()
+				.requestMatchers("/admin/**").hasRole("ADMINISTRADOR")
+				.requestMatchers("/secretaria/**").hasAnyRole("SECRETARIA", "ADMINISTRADOR")
+				.requestMatchers("/aluno/**").hasRole("ALUNO")
 				.anyRequest().authenticated())
 			.formLogin(form -> form
 				.loginPage("/login")

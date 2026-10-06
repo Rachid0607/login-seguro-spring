@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}">
+<head>
+    <title>Página não encontrada</title>
+</head>
+<body>
+    <div layout:fragment="conteudo">
+        <h2>Página não encontrada</h2>
+        <p>O endereço acessado não existe.</p>
+        <a th:href="@{/}">Voltar ao início</a>
+    </div>
+</body>
+</html>

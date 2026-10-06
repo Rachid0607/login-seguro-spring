@@ -4,7 +4,9 @@
 <body>
     <nav th:fragment="menu" class="menu">
         <a th:href="@{/}">Início</a>
-        <a th:href="@{/painel}" sec:authorize="isAuthenticated()">Painel</a>
+        <a th:href="@{/admin/usuarios}" sec:authorize="hasRole('ADMINISTRADOR')">Administração</a>
+        <a th:href="@{/secretaria/alunos}" sec:authorize="hasRole('SECRETARIA')">Alunos</a>
+        <a th:href="@{/aluno}" sec:authorize="hasRole('ALUNO')">Meus dados</a>
         <a th:href="@{/login}" sec:authorize="isAnonymous()">Entrar</a>
         <a th:href="@{/cadastro}" sec:authorize="isAnonymous()">Cadastrar</a>
         <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>

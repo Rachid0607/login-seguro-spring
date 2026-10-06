@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}">
+<head>
+    <title>Administração de usuários</title>
+</head>
+<body>
+    <div layout:fragment="conteudo">
+        <h2>Usuários</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Perfil</th>
+                    <th>Ativo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.nome}">Nome</td>
+                    <td th:text="${usuario.email}">email</td>
+                    <td th:text="${usuario.perfil}">PERFIL</td>
+                    <td th:text="${usuario.ativo} ? 'Sim' : 'Não'">Ativo</td>
+                    <td th:if="${usuario.id != idAdminLogado}">
+                        <form th:action="@{'/admin/usuarios/' + ${usuario.id} + '/perfil'}" method="post" style="display:inline">
+                            <select name="perfil">
+                                <option th:each="p : ${T(br.umc.loginseguro.usuario.Perfil).values()}"
+                                        th:value="${p}" th:text="${p}" th:selected="${p == usuario.perfil}">PERFIL</option>
+                            </select>
+                            <button type="submit">Alterar perfil</button>
+                        </form>
+                        <form th:action="@{'/admin/usuarios/' + ${usuario.id} + '/ativo'}" method="post" style="display:inline">
+                            <input type="hidden" name="ativo" th:value="${!usuario.ativo}">
+                            <button type="submit" th:text="${usuario.ativo} ? 'Desativar' : 'Ativar'">Alternar</button>
+                        </form>
+                    </td>
+                    <td th:if="${usuario.id == idAdminLogado}">
+                        <em>(você)</em>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Criar usuário (Secretaria ou Administrador)</h3>
+        <form th:action="@{/admin/usuarios}" th:object="${novoUsuarioForm}" method="post">
+            <div>
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" th:field="*{nome}">
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Erro no nome.</p>
+            </div>
+            <div>
+                <label for="email">E-mail</label>
+                <input type="email" id="email" th:field="*{email}">
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erro no e-mail.</p>
+            </div>
+            <div>
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" th:field="*{senha}">
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">Erro na senha.</p>
+            </div>
+            <div>
+                <label for="perfil">Perfil</label>
+                <select id="perfil" th:field="*{perfil}">
+                    <option value="SECRETARIA">SECRETARIA</option>
+                    <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                </select>
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('perfil')}" th:errors="*{perfil}">Erro no perfil.</p>
+            </div>
+            <button type="submit">Criar</button>
+        </form>
+    </div>
+</body>
+</html>
