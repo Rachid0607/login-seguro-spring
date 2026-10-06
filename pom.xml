@@ -45,6 +45,15 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
+		<!-- Nao gerenciada pelo BOM do Spring Boot 4: o Spring Boot removeu o
+		     suporte nativo a sessao no MongoDB, e o proprio time do MongoDB
+		     passou a manter esta biblioteca separadamente (primeira versao GA
+		     compativel com Boot 4 e esta, 4.0.0). -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-spring-session</artifactId>
+			<version>4.0.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
