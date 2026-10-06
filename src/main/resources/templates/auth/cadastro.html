@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${appNome}">Login Seguro</title>
+    <link rel="stylesheet" th:href="@{'/temas/' + ${appTema} + '/tema.css'}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+</head>
+<body>
+    <div class="login-screen">
+        <div class="login-card cadastro">
+            <div th:replace="~{fragments/alternador-tema :: alternadorTema}"></div>
+
+            <div class="login-brand">
+                <p th:text="${appNome}">Login Seguro</p>
+                <p class="subtitulo">Criar uma conta de aluno</p>
+            </div>
+
+            <form th:action="@{/cadastro}" th:object="${cadastroForm}" method="post" class="form">
+                <div class="campo" th:classappend="${#fields.hasErrors('nome')} ? 'com-erro'">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" th:field="*{nome}">
+                    <p class="form-error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Erro no nome.</p>
+                </div>
+                <div class="campo" th:classappend="${#fields.hasErrors('email')} ? 'com-erro'">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" th:field="*{email}">
+                    <p class="form-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erro no e-mail.</p>
+                </div>
+                <div class="campo" th:classappend="${#fields.hasErrors('senha')} ? 'com-erro'">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" th:field="*{senha}">
+                    <p class="form-hint">Mínimo de 8 caracteres, com ao menos uma letra e um número.</p>
+                    <p class="form-error" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">Erro na senha.</p>
+                </div>
+                <div class="campo" th:classappend="${#fields.hasErrors('confirmacaoSenha')} ? 'com-erro'">
+                    <label for="confirmacaoSenha">Confirme a senha</label>
+                    <input type="password" id="confirmacaoSenha" th:field="*{confirmacaoSenha}">
+                    <p class="form-error" th:if="${#fields.hasErrors('confirmacaoSenha')}" th:errors="*{confirmacaoSenha}">Erro na confirmação.</p>
+                </div>
+                <div class="campo">
+                    <label class="campo-checkbox">
+                        <input type="checkbox" th:field="*{aceiteTermos}">
+                        <span>Li e aceito os termos de uso e a política de privacidade.</span>
+                    </label>
+                    <p class="form-error" th:if="${#fields.hasErrors('aceiteTermos')}" th:errors="*{aceiteTermos}">Erro no aceite.</p>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+            </form>
+
+            <div class="login-links">
+                <a th:href="@{/login}">Já tenho uma conta</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

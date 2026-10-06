@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+    <nav th:fragment="menu" class="main-nav">
+        <a th:href="@{/}" class="nav-link" th:classappend="${caminhoAtual == '/'} ? 'active'">Início</a>
+        <a th:href="@{/admin/usuarios}" class="nav-link" th:classappend="${caminhoAtual == '/admin/usuarios'} ? 'active'" sec:authorize="hasRole('ADMINISTRADOR')">Administração</a>
+        <a th:href="@{/admin/auditoria}" class="nav-link" th:classappend="${caminhoAtual == '/admin/auditoria'} ? 'active'" sec:authorize="hasRole('ADMINISTRADOR')">Auditoria</a>
+        <a th:href="@{/secretaria/alunos}" class="nav-link" th:classappend="${caminhoAtual == '/secretaria/alunos'} ? 'active'" sec:authorize="hasRole('SECRETARIA')">Alunos</a>
+        <a th:href="@{/aluno}" class="nav-link" th:classappend="${caminhoAtual == '/aluno'} ? 'active'" sec:authorize="hasRole('ALUNO')">Meus dados</a>
+        <a th:href="@{/login}" class="nav-link" th:classappend="${caminhoAtual == '/login'} ? 'active'" sec:authorize="isAnonymous()">Entrar</a>
+        <a th:href="@{/cadastro}" class="nav-link" th:classappend="${caminhoAtual == '/cadastro'} ? 'active'" sec:authorize="isAnonymous()">Cadastrar</a>
+    </nav>
+</body>
+</html>

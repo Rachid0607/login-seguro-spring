@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+    <header th:fragment="cabecalho" class="topbar">
+        <span class="brand-title" th:text="${appNome}">Login Seguro</span>
+        <div class="topbar-user">
+            <div class="topbar-user-info" sec:authorize="isAuthenticated()">
+                <strong sec:authentication="principal.nome">Nome</strong>
+                <span sec:authentication="principal.perfil">PERFIL</span>
+            </div>
+            <div th:replace="~{fragments/alternador-tema :: alternadorTema}"></div>
+            <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" class="form-inline">
+                <button type="submit" class="btn-sair">Sair</button>
+            </form>
+        </div>
+    </header>
+</body>
+</html>

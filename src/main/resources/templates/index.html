@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}">
 <head>
-    <meta charset="UTF-8">
-    <title>Login Seguro</title>
+    <title>Início</title>
 </head>
 <body>
-    <h1>Login Seguro</h1>
-    <p>Projeto base em construção: Spring Boot, Thymeleaf e MongoDB Atlas.</p>
+    <div layout:fragment="conteudo">
+        <div class="page-header">
+            <h1>Bem-vindo</h1>
+            <p>Sistema de login seguro com Spring Boot, Thymeleaf e MongoDB Atlas.</p>
+        </div>
+        <div class="card">
+            <p>Use o menu acima para entrar ou criar uma conta.</p>
+        </div>
+    </div>
 </body>
 </html>

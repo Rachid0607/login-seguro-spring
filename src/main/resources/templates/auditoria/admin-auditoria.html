@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}">
+<head>
+    <title>Auditoria</title>
+</head>
+<body>
+    <div layout:fragment="conteudo">
+        <div class="page-header">
+            <h1>Auditoria</h1>
+            <p>Últimos 100 eventos de acesso ao sistema.</p>
+        </div>
+
+        <div class="card">
+            <div class="empty-state" th:if="${#lists.isEmpty(eventos)}">
+                <p>Nenhum evento registrado ainda.</p>
+            </div>
+            <div class="tabela-scroll" th:unless="${#lists.isEmpty(eventos)}">
+                <table class="table">
+                    <thead>
+                        <tr><th>Data/hora</th><th>Evento</th><th>Usuário</th><th>Motivo</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="evento : ${eventos}">
+                            <td th:text="${evento.dataHora}">Data</td>
+                            <td>
+                                <span class="badge" th:class="'badge badge-evento-' + ${#strings.toLowerCase(evento.tipo)}" th:text="${evento.tipo}">TIPO</span>
+                            </td>
+                            <td th:text="${evento.usuarioId} ?: '—'">Usuário</td>
+                            <td th:text="${evento.motivo}">Motivo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

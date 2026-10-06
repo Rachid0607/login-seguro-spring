@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.umc</groupId>
 	<artifactId>login-seguro-spring</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>LoginSeguro</name>
 	<description>Sistema de login seguro com Spring Boot, Thymeleaf e MongoDB Atlas</description>
 	<properties>
@@ -28,6 +28,31 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+		<!-- Nao gerenciada pelo BOM do Spring Boot 4: o Spring Boot removeu o
+		     suporte nativo a sessao no MongoDB, e o proprio time do MongoDB
+		     passou a manter esta biblioteca separadamente (primeira versao GA
+		     compativel com Boot 4 e esta, 4.0.0). -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-spring-session</artifactId>
+			<version>4.0.0</version>
 		</dependency>
 
 		<dependency>

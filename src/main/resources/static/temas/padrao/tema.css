@@ -1,0 +1,74 @@
+:root {
+    /* paleta base */
+    --cor-fundo-pagina: #f8fafc;
+    --cor-texto: #0f172a;
+    --cor-texto-secundario: #64748b;
+    --cor-borda: #e2e8f0;
+    --cor-borda-input: #cbd5e1;
+
+    /* marca (amarelo) */
+    --cor-primaria: #ffc400;
+    --cor-primaria-hover: #e0a800;
+    --cor-sobre-primaria: #121212;
+    --cor-link: #8a6400;
+    --cor-primaria-fundo-suave: #fff8e1;
+    --cor-primaria-anel: rgba(255, 196, 0, 0.35);
+
+    /* superficies */
+    --cor-card-fundo: #ffffff;
+    --cor-sombra: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.08);
+    --cor-sombra-forte: 0 24px 48px rgba(0, 0, 0, 0.35);
+    --raio: 10px;
+    --raio-grande: 16px;
+    --fonte: "Segoe UI", system-ui, -apple-system, sans-serif;
+
+    /* barra superior */
+    --cor-topbar-fundo: #121212;
+    --cor-topbar-texto: #ffffff;
+    --cor-topbar-texto-secundario: #a3a3a3;
+    --cor-topbar-hover: #1f1f1f;
+
+    /* navegacao */
+    --cor-nav-fundo: #ffffff;
+    --cor-nav-texto: #64748b;
+    --cor-nav-texto-ativo: #0f172a;
+
+    /* tabelas */
+    --cor-tabela-cabecalho-texto: #64748b;
+    --cor-tabela-borda: #e2e8f0;
+    --cor-tabela-borda-suave: #f1f5f9;
+    --cor-tabela-hover: #f8fafc;
+
+    /* mensagens de sucesso/erro */
+    --cor-sucesso-fundo: #f0fdf4;
+    --cor-sucesso-texto: #16a34a;
+    --cor-erro-fundo: #fef2f2;
+    --cor-erro-texto: #dc2626;
+
+    /* botao de perigo */
+    --cor-perigo: #dc2626;
+    --cor-perigo-hover: #b91c1c;
+    --cor-perigo-texto: #ffffff;
+
+    /* etiquetas de perfil */
+    --cor-badge-administrador-fundo: #f5f3ff;
+    --cor-badge-administrador-texto: #7c3aed;
+    --cor-badge-secretaria-fundo: #eff6ff;
+    --cor-badge-secretaria-texto: #2563eb;
+    --cor-badge-aluno-fundo: #f0fdf4;
+    --cor-badge-aluno-texto: #16a34a;
+
+    /* etiquetas de status e auditoria */
+    --cor-badge-ativo-fundo: #f0fdf4;
+    --cor-badge-ativo-texto: #16a34a;
+    --cor-badge-inativo-fundo: #fef2f2;
+    --cor-badge-inativo-texto: #dc2626;
+    --cor-badge-bloqueio-fundo: #fffbeb;
+    --cor-badge-bloqueio-texto: #d97706;
+    --cor-badge-neutro-fundo: #f1f5f9;
+    --cor-badge-neutro-texto: #334155;
+
+    /* tela de login/cadastro */
+    --cor-login-degrade-1: #2a2a2a;
+    --cor-login-degrade-2: #121212;
+}
