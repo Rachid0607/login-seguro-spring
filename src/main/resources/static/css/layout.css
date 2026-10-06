@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, "Segoe UI", Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+a {
+    color: var(--cor-primaria);
+}
+
+.cabecalho {
+    background-color: var(--cor-cabecalho-fundo);
+    border-bottom: 1px solid var(--cor-borda);
+    padding: 1rem 1.5rem;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.menu {
+    background-color: var(--cor-cabecalho-fundo);
+    border-bottom: 1px solid var(--cor-borda);
+    padding: 0.5rem 1.5rem;
+}
+
+.menu a {
+    margin-right: 1rem;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+main.conteudo {
+    padding: 1.5rem;
+    min-height: 60vh;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.rodape {
+    background-color: var(--cor-rodape-fundo);
+    border-top: 1px solid var(--cor-borda);
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.mensagem {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.mensagem-sucesso {
+    background-color: var(--cor-sucesso-fundo);
+    color: var(--cor-sucesso-texto);
+}
+
+.mensagem-erro {
+    background-color: var(--cor-erro-fundo);
+    color: var(--cor-erro-texto);
+}
