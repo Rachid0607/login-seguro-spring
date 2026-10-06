@@ -1,8 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
     <nav th:fragment="menu" class="menu">
         <a th:href="@{/}">Início</a>
+        <a th:href="@{/painel}" sec:authorize="isAuthenticated()">Painel</a>
+        <a th:href="@{/login}" sec:authorize="isAnonymous()">Entrar</a>
+        <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+        <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" style="display:inline">
+            <button type="submit">Sair</button>
+        </form>
     </nav>
 </body>
 </html>
