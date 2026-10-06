@@ -1,29 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/base}">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Entrar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${appNome}">Login Seguro</title>
+    <link rel="stylesheet" th:href="@{'/temas/' + ${appTema} + '/tema.css'}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
 </head>
 <body>
-    <div layout:fragment="conteudo">
-        <h2>Entrar</h2>
+    <div class="login-screen">
+        <div class="login-card">
+            <div th:replace="~{fragments/alternador-tema :: alternadorTema}"></div>
 
-        <p class="mensagem mensagem-erro" th:if="${param.erro}">E-mail ou senha inválidos.</p>
-        <p class="mensagem mensagem-erro" th:if="${param.bloqueado}">Muitas tentativas. Tente novamente em alguns minutos.</p>
-        <p class="mensagem mensagem-sucesso" th:if="${param.logout}">Você saiu do sistema.</p>
+            <div class="login-brand">
+                <p th:text="${appNome}">Login Seguro</p>
+                <p class="subtitulo">Entre com seu e-mail e senha</p>
+            </div>
 
-        <form th:action="@{/login}" method="post">
-            <div>
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" required="required" autofocus="autofocus">
+            <p class="mensagem mensagem-erro" th:if="${param.erro}">E-mail ou senha inválidos.</p>
+            <p class="mensagem mensagem-erro" th:if="${param.bloqueado}">Muitas tentativas. Tente novamente em alguns minutos.</p>
+            <p class="mensagem mensagem-sucesso" th:if="${param.logout}">Você saiu do sistema.</p>
+
+            <form th:action="@{/login}" method="post" class="form">
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required="required" autofocus="autofocus">
+                </div>
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" required="required">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+            </form>
+
+            <div class="login-links">
+                <a th:href="@{/cadastro}">Criar uma conta</a>
             </div>
-            <div>
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" required="required">
-            </div>
-            <button type="submit">Entrar</button>
-        </form>
+        </div>
     </div>
 </body>
 </html>

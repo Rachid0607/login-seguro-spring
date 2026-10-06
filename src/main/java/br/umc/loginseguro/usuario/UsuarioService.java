@@ -46,4 +46,14 @@ public class UsuarioService {
 		return usuarioRepository.findByPerfil(perfil);
 	}
 
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
+	public long contarTodos() {
+		return usuarioRepository.count();
+	}
+
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
+	public long contarPorPerfil(Perfil perfil) {
+		return usuarioRepository.countByPerfil(perfil);
+	}
+
 }

@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layouts/base}">
 <head>
     <title>Página não encontrada</title>
 </head>
 <body>
     <div layout:fragment="conteudo">
-        <h2>Página não encontrada</h2>
-        <p>O endereço acessado não existe.</p>
-        <a th:href="@{/}">Voltar ao início</a>
+        <div class="error-screen">
+            <div class="error-card">
+                <p class="codigo">404</p>
+                <h2>Página não encontrada</h2>
+                <p>O endereço acessado não existe.</p>
+                <a class="btn btn-primary" th:href="@{/painel}" sec:authorize="isAuthenticated()">Voltar ao painel</a>
+                <a class="btn btn-primary" th:href="@{/}" sec:authorize="isAnonymous()">Voltar ao início</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
