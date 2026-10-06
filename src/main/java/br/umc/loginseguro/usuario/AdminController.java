@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.umc.loginseguro.auditoria.AuditoriaService;
 import br.umc.loginseguro.seguranca.UsuarioAutenticado;
 import jakarta.validation.Valid;
 
@@ -21,15 +22,24 @@ public class AdminController {
 
 	private final AdminUsuarioService adminUsuarioService;
 	private final UsuarioService usuarioService;
+	private final AuditoriaService auditoriaService;
 
-	public AdminController(AdminUsuarioService adminUsuarioService, UsuarioService usuarioService) {
+	public AdminController(AdminUsuarioService adminUsuarioService, UsuarioService usuarioService,
+			AuditoriaService auditoriaService) {
 		this.adminUsuarioService = adminUsuarioService;
 		this.usuarioService = usuarioService;
+		this.auditoriaService = auditoriaService;
 	}
 
 	@GetMapping
 	public String raiz() {
 		return "redirect:/admin/usuarios";
+	}
+
+	@GetMapping("/auditoria")
+	public String auditoria(Model model) {
+		model.addAttribute("eventos", auditoriaService.listarRecentes());
+		return "auditoria/admin-auditoria";
 	}
 
 	@GetMapping("/usuarios")

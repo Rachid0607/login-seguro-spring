@@ -10,6 +10,7 @@
         <h2>Entrar</h2>
 
         <p class="mensagem mensagem-erro" th:if="${param.erro}">E-mail ou senha inválidos.</p>
+        <p class="mensagem mensagem-erro" th:if="${param.bloqueado}">Muitas tentativas. Tente novamente em alguns minutos.</p>
         <p class="mensagem mensagem-sucesso" th:if="${param.logout}">Você saiu do sistema.</p>
 
         <form th:action="@{/login}" method="post">

@@ -7,6 +7,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.umc.loginseguro.auditoria.AuditoriaService;
+import br.umc.loginseguro.auditoria.TipoEvento;
 import br.umc.loginseguro.seguranca.SessaoUsuarioService;
 
 /**
@@ -21,13 +23,16 @@ public class AdminUsuarioService {
 	private final UsuarioService usuarioService;
 	private final PasswordEncoder passwordEncoder;
 	private final SessaoUsuarioService sessaoUsuarioService;
+	private final AuditoriaService auditoriaService;
 
 	public AdminUsuarioService(UsuarioRepository usuarioRepository, UsuarioService usuarioService,
-			PasswordEncoder passwordEncoder, SessaoUsuarioService sessaoUsuarioService) {
+			PasswordEncoder passwordEncoder, SessaoUsuarioService sessaoUsuarioService,
+			AuditoriaService auditoriaService) {
 		this.usuarioRepository = usuarioRepository;
 		this.usuarioService = usuarioService;
 		this.passwordEncoder = passwordEncoder;
 		this.sessaoUsuarioService = sessaoUsuarioService;
+		this.auditoriaService = auditoriaService;
 	}
 
 	@PreAuthorize("hasRole('ADMINISTRADOR')")
@@ -59,6 +64,7 @@ public class AdminUsuarioService {
 		usuario.setPerfil(novoPerfil);
 		usuarioRepository.save(usuario);
 		sessaoUsuarioService.encerrarSessoesDoUsuario(usuario.getEmail());
+		auditoriaService.registrar(TipoEvento.PERFIL_ALTERADO, usuario.getId(), "Perfil alterado para " + novoPerfil);
 	}
 
 	@PreAuthorize("hasRole('ADMINISTRADOR')")
@@ -71,6 +77,7 @@ public class AdminUsuarioService {
 		usuarioRepository.save(usuario);
 		if (!ativo) {
 			sessaoUsuarioService.encerrarSessoesDoUsuario(usuario.getEmail());
+			auditoriaService.registrar(TipoEvento.USUARIO_DESATIVADO, usuario.getId(), "Conta desativada pelo administrador");
 		}
 	}
 
