@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}">
+<head>
+    <title>Cadastro</title>
+</head>
+<body>
+    <div layout:fragment="conteudo">
+        <h2>Criar conta</h2>
+
+        <form th:action="@{/cadastro}" th:object="${cadastroForm}" method="post">
+            <div>
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" th:field="*{nome}">
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Erro no nome.</p>
+            </div>
+            <div>
+                <label for="email">E-mail</label>
+                <input type="email" id="email" th:field="*{email}">
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erro no e-mail.</p>
+            </div>
+            <div>
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" th:field="*{senha}">
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}">Erro na senha.</p>
+            </div>
+            <div>
+                <label for="confirmacaoSenha">Confirme a senha</label>
+                <input type="password" id="confirmacaoSenha" th:field="*{confirmacaoSenha}">
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('confirmacaoSenha')}" th:errors="*{confirmacaoSenha}">Erro na confirmação.</p>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" th:field="*{aceiteTermos}">
+                    Li e aceito os termos de uso e a política de privacidade.
+                </label>
+                <p class="mensagem mensagem-erro" th:if="${#fields.hasErrors('aceiteTermos')}" th:errors="*{aceiteTermos}">Erro no aceite.</p>
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</body>
+</html>

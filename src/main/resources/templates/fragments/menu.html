@@ -6,6 +6,7 @@
         <a th:href="@{/}">Início</a>
         <a th:href="@{/painel}" sec:authorize="isAuthenticated()">Painel</a>
         <a th:href="@{/login}" sec:authorize="isAnonymous()">Entrar</a>
+        <a th:href="@{/cadastro}" sec:authorize="isAnonymous()">Cadastrar</a>
         <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
         <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" style="display:inline">
             <button type="submit">Sair</button>
