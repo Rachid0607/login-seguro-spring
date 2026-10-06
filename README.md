@@ -126,7 +126,7 @@ O código em `src/main/java/br/umc/loginseguro` está dividido por assunto, não
 
 ## Como versionei
 
-Usei gitflow: `main` só recebe release, `develop` é onde o trabalho se junta, e cada etapa do projeto foi uma branch de `feature` separada a partir do `develop`. Na ordem em que fiz: estrutura inicial, conexão com o MongoDB, layout e temas, usuário e perfis, login e logout, cadastro com validação, controle de acesso por perfil, sessão no Mongo, força bruta e auditoria e, por fim, `feature/ajustes-visuais`, com o redesign do visual inspirado no meu PFC.
+Usei gitflow: `main` só recebe release, `develop` é onde o trabalho se junta, e cada etapa do projeto foi uma branch de `feature` separada a partir do `develop`. Na ordem em que fiz: estrutura inicial, conexão com o MongoDB, layout e temas, usuário e perfis, login e logout, cadastro com validação, controle de acesso por perfil, sessão no Mongo, força bruta e auditoria e, por fim, `feature/ajustes-visuais`, com o redesign do visual inspirado no meu PFC. A versão final ficou pronta na branch `release/1.0.0`, integrada à `main` e marcada com a tag `v1.0.0`.
 
 ## Como adaptar para o PFC
 

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.umc</groupId>
 	<artifactId>login-seguro-spring</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>LoginSeguro</name>
 	<description>Sistema de login seguro com Spring Boot, Thymeleaf e MongoDB Atlas</description>
 	<properties>
