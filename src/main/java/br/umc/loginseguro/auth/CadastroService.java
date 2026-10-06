@@ -5,6 +5,8 @@ import java.time.Instant;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.umc.loginseguro.auditoria.AuditoriaService;
+import br.umc.loginseguro.auditoria.TipoEvento;
 import br.umc.loginseguro.usuario.Perfil;
 import br.umc.loginseguro.usuario.Usuario;
 import br.umc.loginseguro.usuario.UsuarioService;
@@ -14,10 +16,13 @@ public class CadastroService {
 
 	private final UsuarioService usuarioService;
 	private final PasswordEncoder passwordEncoder;
+	private final AuditoriaService auditoriaService;
 
-	public CadastroService(UsuarioService usuarioService, PasswordEncoder passwordEncoder) {
+	public CadastroService(UsuarioService usuarioService, PasswordEncoder passwordEncoder,
+			AuditoriaService auditoriaService) {
 		this.usuarioService = usuarioService;
 		this.passwordEncoder = passwordEncoder;
+		this.auditoriaService = auditoriaService;
 	}
 
 	public boolean emailJaCadastrado(String email) {
@@ -35,7 +40,9 @@ public class CadastroService {
 		usuario.setPerfil(Perfil.ALUNO);
 		usuario.setAtivo(true);
 		usuario.setConsentimentoTermosEm(Instant.now());
-		return usuarioService.salvar(usuario);
+		Usuario salvo = usuarioService.salvar(usuario);
+		auditoriaService.registrar(TipoEvento.USUARIO_REGISTRADO, salvo.getId(), "Cadastro publico (ALUNO)");
+		return salvo;
 	}
 
 }

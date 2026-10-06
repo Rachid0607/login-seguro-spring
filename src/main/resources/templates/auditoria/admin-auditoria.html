@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}">
+<head>
+    <title>Auditoria</title>
+</head>
+<body>
+    <div layout:fragment="conteudo">
+        <h2>Auditoria (últimos 100 eventos)</h2>
+        <table>
+            <thead>
+                <tr><th>Data/hora</th><th>Evento</th><th>Usuário</th><th>Motivo</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="evento : ${eventos}">
+                    <td th:text="${evento.dataHora}">Data</td>
+                    <td th:text="${evento.tipo}">TIPO</td>
+                    <td th:text="${evento.usuarioId} ?: '—'">Usuário</td>
+                    <td th:text="${evento.motivo}">Motivo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
