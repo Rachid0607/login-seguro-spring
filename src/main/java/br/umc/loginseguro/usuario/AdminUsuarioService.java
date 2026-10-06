@@ -7,6 +7,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.umc.loginseguro.seguranca.SessaoUsuarioService;
+
 /**
  * Operacoes administrativas sobre usuarios (criar SECRETARIA/ADMINISTRADOR,
  * promover/rebaixar perfil, ativar/desativar). Protegidas por @PreAuthorize
@@ -18,12 +20,14 @@ public class AdminUsuarioService {
 	private final UsuarioRepository usuarioRepository;
 	private final UsuarioService usuarioService;
 	private final PasswordEncoder passwordEncoder;
+	private final SessaoUsuarioService sessaoUsuarioService;
 
 	public AdminUsuarioService(UsuarioRepository usuarioRepository, UsuarioService usuarioService,
-			PasswordEncoder passwordEncoder) {
+			PasswordEncoder passwordEncoder, SessaoUsuarioService sessaoUsuarioService) {
 		this.usuarioRepository = usuarioRepository;
 		this.usuarioService = usuarioService;
 		this.passwordEncoder = passwordEncoder;
+		this.sessaoUsuarioService = sessaoUsuarioService;
 	}
 
 	@PreAuthorize("hasRole('ADMINISTRADOR')")
@@ -54,6 +58,7 @@ public class AdminUsuarioService {
 		Usuario usuario = buscarOuFalhar(idUsuarioAlvo);
 		usuario.setPerfil(novoPerfil);
 		usuarioRepository.save(usuario);
+		sessaoUsuarioService.encerrarSessoesDoUsuario(usuario.getEmail());
 	}
 
 	@PreAuthorize("hasRole('ADMINISTRADOR')")
@@ -64,6 +69,9 @@ public class AdminUsuarioService {
 		Usuario usuario = buscarOuFalhar(idUsuarioAlvo);
 		usuario.setAtivo(ativo);
 		usuarioRepository.save(usuario);
+		if (!ativo) {
+			sessaoUsuarioService.encerrarSessoesDoUsuario(usuario.getEmail());
+		}
 	}
 
 	private Usuario buscarOuFalhar(String id) {
