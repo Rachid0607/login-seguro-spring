@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <form th:fragment="alternadorTema" th:action="@{/tema}" method="post" style="display:inline">
+        <input type="hidden" name="destino" th:value="${caminhoAtual}">
+        <input type="hidden" name="tema" th:value="${appTema == 'escuro'} ? 'padrao' : 'escuro'">
+        <button type="submit" class="btn-tema"
+                th:attr="aria-label=${appTema == 'escuro'} ? 'Mudar para tema claro' : 'Mudar para tema escuro'"
+                th:text="${appTema == 'escuro'} ? '☀' : '☾'">☾</button>
+    </form>
+</body>
+</html>

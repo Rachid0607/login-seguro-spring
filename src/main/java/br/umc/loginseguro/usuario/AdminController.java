@@ -46,10 +46,18 @@ public class AdminController {
 	public String listar(Model model, @AuthenticationPrincipal UsuarioAutenticado admin) {
 		model.addAttribute("usuarios", adminUsuarioService.listarTodos());
 		model.addAttribute("idAdminLogado", admin.getId());
+		adicionarContadores(model);
 		if (!model.containsAttribute("novoUsuarioForm")) {
 			model.addAttribute("novoUsuarioForm", new NovoUsuarioAdminForm());
 		}
 		return "usuario/admin-usuarios";
+	}
+
+	private void adicionarContadores(Model model) {
+		model.addAttribute("totalUsuarios", usuarioService.contarTodos());
+		model.addAttribute("totalAdministradores", usuarioService.contarPorPerfil(Perfil.ADMINISTRADOR));
+		model.addAttribute("totalSecretarias", usuarioService.contarPorPerfil(Perfil.SECRETARIA));
+		model.addAttribute("totalAlunos", usuarioService.contarPorPerfil(Perfil.ALUNO));
 	}
 
 	@PostMapping("/usuarios")
@@ -66,6 +74,7 @@ public class AdminController {
 			form.setSenha(null);
 			model.addAttribute("usuarios", adminUsuarioService.listarTodos());
 			model.addAttribute("idAdminLogado", admin.getId());
+			adicionarContadores(model);
 			return "usuario/admin-usuarios";
 		}
 

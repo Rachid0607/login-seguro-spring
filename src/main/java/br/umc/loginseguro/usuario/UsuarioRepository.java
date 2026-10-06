@@ -15,4 +15,6 @@ public interface UsuarioRepository extends MongoRepository<Usuario, String> {
 
 	List<Usuario> findByPerfil(Perfil perfil);
 
+	long countByPerfil(Perfil perfil);
+
 }

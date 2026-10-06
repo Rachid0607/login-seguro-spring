@@ -7,10 +7,29 @@
 </head>
 <body>
     <div layout:fragment="conteudo">
-        <h2>Meus dados</h2>
-        <p><strong>Nome:</strong> <span th:text="${usuario.nome}">Nome</span></p>
-        <p><strong>E-mail:</strong> <span th:text="${usuario.username}">email</span></p>
-        <p><strong>Perfil:</strong> <span th:text="${usuario.perfil}">PERFIL</span></p>
+        <div class="page-header">
+            <h1>Meus dados</h1>
+            <p>Informações da sua conta.</p>
+        </div>
+
+        <div class="card">
+            <div class="perfil-detalhe">
+                <div class="perfil-item">
+                    <span>Nome</span>
+                    <strong th:text="${usuario.nome}">Nome</strong>
+                </div>
+                <div class="perfil-item">
+                    <span>E-mail</span>
+                    <strong th:text="${usuario.username}">email</strong>
+                </div>
+                <div class="perfil-item">
+                    <span>Perfil</span>
+                    <strong>
+                        <span class="badge" th:class="'badge badge-perfil-' + ${#strings.toLowerCase(usuario.perfil)}" th:text="${usuario.perfil}">PERFIL</span>
+                    </strong>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
