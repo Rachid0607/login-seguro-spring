@@ -75,6 +75,8 @@ A seleção do tema é persistida em um cookie no navegador do usuário, por mei
 
 O versionamento do projeto seguiu o modelo Gitflow, com a branch `main` reservada para versões de release, a branch `develop` concentrando a integração contínua do desenvolvimento, e uma branch de `feature` distinta para cada etapa do trabalho, posteriormente integrada à `develop`. As etapas de desenvolvimento, na ordem em que foram implementadas, foram: estrutura inicial do projeto, conexão com o MongoDB Atlas, layout e temas, modelagem de usuário e perfis, login e logout, cadastro com validação, controle de acesso por perfil, persistência de sessão no MongoDB, proteção contra força bruta com auditoria e, por fim, o redesign da interface, na branch `feature/ajustes-visuais`.
 
+A versão final do trabalho foi preparada na branch `release/1.0.0`, integrada à `main` e marcada com a tag `v1.0.0`.
+
 ## 9 Como adaptar o sistema
 
 A adaptação do sistema para um domínio de aplicação distinto, como o Sistema de Gestão de Eventos Acadêmicos, não exige alteração da lógica central de autenticação e autorização. São necessários os seguintes ajustes: a definição do nome da aplicação pela variável `APP_NOME`; a criação de um novo arquivo de tema em `static/temas/<nome>`, com os valores de cor e tipografia da nova identidade visual, selecionado pela variável `APP_TEMA`; a eventual alteração dos valores do enumerado `Perfil`, caso os perfis de usuário do novo domínio sejam distintos dos três perfis aqui definidos (ADMINISTRADOR, SECRETARIA, ALUNO), com o ajuste correspondente nas regras de autorização declaradas em `SecurityConfig`; e a restrição do domínio de e-mail aceito no cadastro público pela variável `APP_CADASTRO_DOMINIO_EMAIL`.
