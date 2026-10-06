@@ -1,5 +1,6 @@
 package br.umc.loginseguro;
 
+import br.umc.loginseguro.config.MongoUriObrigatoriaInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LoginSeguroApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LoginSeguroApplication.class, args);
+		SpringApplication app = new SpringApplication(LoginSeguroApplication.class);
+		app.addInitializers(new MongoUriObrigatoriaInitializer());
+		app.run(args);
 	}
 
 }
